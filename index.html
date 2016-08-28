@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ben</title>
+    <style>
+body, html {
+    padding: 0;
+    margin: 0;
+    font: sans-serif;
+}
+header, footer {
+    text-align: center;
+    padding: 1em 0;
+}
+header {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+#main {
+}
+#clock {
+    margin: 0 auto;
+    width: 500px;
+    height: 500px;
+    position: relative;
+    border-radius: 50%;
+    border: 1px solid #111;
+}
+.clock-hand {
+    position: absolute;
+    transform-origin: 50% 100%;
+    width: 0px;
+    box-sizing: border-box;
+}
+#ch-hour {
+    top: 30%;
+    height: 20%;
+    border: 4px solid #111;
+    left: calc(50% - 4px);
+    border-radius: 4px;
+    opacity: .5;
+}
+#ch-minute {
+    top: 17%;
+    height: 33%;
+    border: 2px solid #111;
+    left: calc(50% - 2px);
+    border-radius: 2px;
+    opacity: .5;
+}
+#ch-second {
+    top: 2%;
+    height: 48%;
+    border: 1px solid #111;
+    left: calc(50% - 1px);
+    border-radius: 1px;
+    opacity: .5;
+}
+.clock-number {
+    font-size: 2em;
+    padding-top: .5em;
+    box-sizing: border-box;
+    height: 50%;
+    width: 2em;
+    position: absolute;
+    left: calc(50% - 1em);
+    transform-origin: 50% 100%;
+    text-align: center;
+}
+#cn-1 {
+    transform: rotate(30deg);
+}
+#cn-2 {
+    transform: rotate(60deg);
+}
+#cn-3 {
+    transform: rotate(90deg);
+}
+#cn-4 {
+    transform: rotate(120deg);
+}
+#cn-5 {
+    transform: rotate(150deg);
+}
+#cn-6 {
+    transform: rotate(180deg);
+}
+#cn-7 {
+    transform: rotate(210deg);
+}
+#cn-8 {
+    transform: rotate(240deg);
+}
+#cn-9 {
+    transform: rotate(270deg);
+}
+#cn-10 {
+    transform: rotate(300deg);
+}
+#cn-11 {
+    transform: rotate(330deg);
+}
+    </style>
+</head>
+<body>
+<header>ben</header>
+<main id="main">
+    <div id="clock">
+        <div id="hands">
+            <div class="clock-hand" id="ch-hour"></div>
+            <div class="clock-hand" id="ch-minute"></div>
+            <div class="clock-hand" id="ch-second"></div>
+        </div>
+        <div id="numbers">
+            <div class="clock-number" id="cn-0">12</div>
+            <div class="clock-number" id="cn-1">1</div>
+            <div class="clock-number" id="cn-2">2</div>
+            <div class="clock-number" id="cn-3">3</div>
+            <div class="clock-number" id="cn-4">4</div>
+            <div class="clock-number" id="cn-5">5</div>
+            <div class="clock-number" id="cn-6">6</div>
+            <div class="clock-number" id="cn-7">7</div>
+            <div class="clock-number" id="cn-8">8</div>
+            <div class="clock-number" id="cn-9">9</div>
+            <div class="clock-number" id="cn-10">10</div>
+            <div class="clock-number" id="cn-11">11</div>
+        </div>
+    </div>
+</main>
+<footer><a href="http://kenrick95.org">Kenrick</a><br />Sounds are downloaded from freesound.org, all are licensed under CC0 Public Domain.</footer>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    var chHour = document.querySelector("#ch-hour"),
+        chMinute = document.querySelector("#ch-minute"),
+        chSecond = document.querySelector("#ch-second"),
+        currentTime = new Date(),
+        degHour = 0, degMinute = 0, degSecond = 0;
+
+    function redraw() {
+        currentTime = new Date();
+        degSeconds = currentTime.getSeconds() / 60 * 360;
+        degMinute = currentTime.getMinutes() / 60 * 360 + degSeconds / 60;
+        degHour = (currentTime.getHours() % 12) / 12 * 360 + degMinute / 60;
+
+        chHour.style.transform = "rotate(" + degHour + "deg)";
+        chMinute.style.transform = "rotate(" + degMinute + "deg)";
+        chSecond.style.transform = "rotate(" + degSeconds + "deg)";
+    }
+    setInterval(redraw, 1000);
+}, false);
+</script>
+</body>
+</html>
