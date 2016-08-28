@@ -131,11 +131,21 @@ header {
     </div>
 </main>
 <footer><a href="http://kenrick95.org">Kenrick</a><br />Sounds are downloaded from freesound.org, all are licensed under CC0 Public Domain.</footer>
+<audio id="chime-0q" src="sounds/80289__hyderpotter__hourlychimebeg.mp3" preload="auto" />
+<audio id="chime-1q" src="sounds/93143__hyderpotter__quarter.wav" preload="auto" />
+<audio id="chime-2q" src="sounds/93142__hyderpotter__half.wav" preload="auto" />
+<audio id="chime-3q" src="sounds/93141__hyderpotter__3quarter.wav" preload="auto" />
+<audio id="chime-strike" src="sounds/80290__hyderpotter__bigbenstrikes.mp3" preload="auto" />
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     var chHour = document.querySelector("#ch-hour"),
         chMinute = document.querySelector("#ch-minute"),
         chSecond = document.querySelector("#ch-second"),
+        chime0q = document.querySelector("#chime-0q"),
+        chime1q = document.querySelector("#chime-1q"),
+        chime2q = document.querySelector("#chime-2q"),
+        chime3q = document.querySelector("#chime-3q"),
+        chimestrike = document.querySelector("#chime-strike"),
         currentTime = new Date(),
         degHour = 0, degMinute = 0, degSecond = 0;
 
@@ -148,6 +158,16 @@ document.addEventListener("DOMContentLoaded", function () {
         chHour.style.transform = "rotate(" + degHour + "deg)";
         chMinute.style.transform = "rotate(" + degMinute + "deg)";
         chSecond.style.transform = "rotate(" + degSeconds + "deg)";
+
+        if (currentTime.getSeconds() === 0) {
+            switch(currentTime.getMinutes()) {
+                case 0: chime0q.play(); break;
+                case 15: chime1q.play(); break;
+                case 30: chime2q.play(); break;
+                case 45: chime3q.play(); break;
+            }
+           
+        }
     }
     setInterval(redraw, 1000);
 }, false);
