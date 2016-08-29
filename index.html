@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
         currentTime = new Date();
         degSeconds = currentTime.getSeconds() / 60 * 360;
         degMinute  = currentTime.getMinutes() / 60 * 360 + currentTime.getSeconds() / 60 * 30 / 5;
-        degHour = (currentTime.getHours() % 12) / 12 * 360 + currentTime.getMinutes() / 60 * 30 / 5 + currentTime.getSeconds() / 60 * 30 / 5 / 60;
+        degHour = (currentTime.getHours() % 12) / 12 * 360 + currentTime.getMinutes() / 60 * 30 + currentTime.getSeconds() / 60 * 30 / 5 / 60;
 
         chHour.style.transform = "rotate(" + degHour + "deg)";
         chMinute.style.transform = "rotate(" + degMinute + "deg)";
