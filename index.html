@@ -149,7 +149,17 @@ document.addEventListener("DOMContentLoaded", function () {
         chimestrike = document.querySelector("#chime-strike"),
         currentTime = new Date(),
         degHour = 0, degMinute = 0, degSecond = 0;
-
+    function chimeTime(number) {
+        return [0.0, 4.45, 8.68, 12.867, 16.914, 20.962, 25.082, 29.178, 33.255, 37.266, 41.404, 45.543][number];
+    }
+    function chimeHourly(hour) {
+        var numStrike = hour % 12;
+        if (numStrike === 0)
+            numStrike = 12;
+        
+        chimestrike.currentTime = chimeTime(12 - numStrike);
+        chimestrike.play();
+    }
     function redraw() {
         currentTime = new Date();
         degSeconds = currentTime.getSeconds() / 60 * 360;
@@ -162,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (currentTime.getSeconds() === 0) {
             switch(currentTime.getMinutes()) {
-                case 0: chime0q.play(); break;
+                case 0: chime0q.play(); chimeHourly(currentTime.getHours()); break;
                 case 15: chime1q.play(); break;
                 case 30: chime2q.play(); break;
                 case 45: chime3q.play(); break;
