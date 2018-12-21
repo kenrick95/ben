@@ -178,12 +178,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 case 15: chime1q.play(); break;
                 case 30: chime2q.play(); break;
                 case 45: chime3q.play(); break;
-            } else if (currentTime.getSeconds() === 38){
-              switch(currentTime.getMinutes()) {
-                case 59:
-                  chime0q.play();
-                  chime0q.addEventListener('ended', chimeHourly);
-              }
+            }
+        } else if (currentTime.getSeconds() === 38){
+            switch(currentTime.getMinutes()) {
+              case 59:
+                chime0q.play();
+                chime0q.addEventListener('ended', chimeHourly);
             }
         }
     }
