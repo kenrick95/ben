@@ -154,11 +154,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     function chimeHourly() {
         chime0q.removeEventListener('ended', chimeHourly);
+        currentTime = new Date();
         var hour = currentTime.getHours();
         var numStrike = hour % 12;
         if (numStrike === 0)
             numStrike = 12;
-        
+
         chimestrike.currentTime = chimeTime(12 - numStrike);
         chimestrike.play();
     }
@@ -174,12 +175,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (currentTime.getSeconds() === 0) {
             switch(currentTime.getMinutes()) {
-                case 0: chime0q.play(); chime0q.addEventListener('ended', chimeHourly); break;
                 case 15: chime1q.play(); break;
                 case 30: chime2q.play(); break;
                 case 45: chime3q.play(); break;
+            } else if (currentTime.getSeconds() === 38){
+              switch(currentTime.getMinutes()) {
+                case 59:
+                  chime0q.play();
+                  chime0q.addEventListener('ended', chimeHourly);
+              }
             }
-           
         }
     }
     setInterval(redraw, 1000);
